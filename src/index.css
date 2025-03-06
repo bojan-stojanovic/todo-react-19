@@ -1,0 +1,28 @@
+:root {
+    --element-padding: .5rem 1rem;
+    --body-bg: #fff;
+    --text-clr: #252525;
+
+    @media (prefers-color-scheme: dark) {
+        --body-bg: #252525;
+        --text-clr: #fff;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--text-clr);
+    transition: background-color .3s, color .3s;
+}
+
+button {
+    appearance: none;
+    border: none;
+    padding: var(--element-padding);
+    cursor: pointer;
+    font-weight: 700;
+}

@@ -1,0 +1,30 @@
+.filter-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+    button {
+        transition: all .3s;
+
+        &:hover {
+            background-color: #537eff;
+            color: #fff;
+        }
+
+        &.active {
+            background-color: #0040ff;
+            color: #fff;
+        }
+    }
+
+    span {
+        flex: 1 0 100%;
+        text-align: right;
+    }
+}

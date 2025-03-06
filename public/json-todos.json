@@ -1,0 +1,14 @@
+[
+    {
+        "message": "Todo from jeson 1",
+        "completed": false
+    },
+    {
+        "message": "Todo from jeson 2",
+        "completed": true
+    },
+    {
+        "message": "Todo from jeson 3",
+        "completed": false
+    }
+]

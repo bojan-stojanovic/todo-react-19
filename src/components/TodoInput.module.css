@@ -1,0 +1,26 @@
+.form {
+    display: grid;
+    gap: 1rem;
+
+    >div {
+        display: grid;
+        gap: .5rem;
+    }
+}
+
+.input {
+    width: 100%;
+    padding: var(--element-padding);
+}
+
+.button {
+    justify-self: end;
+    background-color: #0040ff;
+    color: #fff;
+   
+}
+
+.error {
+    color: red;
+    font-size: .85rem;
+}
