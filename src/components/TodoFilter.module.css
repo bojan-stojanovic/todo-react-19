@@ -10,7 +10,7 @@
     justify-content: flex-end;
 
     button {
-        transition: all .3s;
+        transition: all 0.3s;
 
         &:hover {
             background-color: #537eff;

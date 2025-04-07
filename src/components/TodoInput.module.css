@@ -2,9 +2,9 @@
     display: grid;
     gap: 1rem;
 
-    >div {
+    > div {
         display: grid;
-        gap: .5rem;
+        gap: 0.5rem;
     }
 }
 
@@ -17,10 +17,9 @@
     justify-self: end;
     background-color: #0040ff;
     color: #fff;
-   
 }
 
 .error {
     color: red;
-    font-size: .85rem;
+    font-size: 0.85rem;
 }

@@ -1,5 +1,5 @@
 :root {
-    --element-padding: .5rem 1rem;
+    --element-padding: 0.5rem 1rem;
     --body-bg: #fff;
     --text-clr: #252525;
 
@@ -17,7 +17,9 @@ body {
     font-family: sans-serif;
     background-color: var(--body-bg);
     color: var(--text-clr);
-    transition: background-color .3s, color .3s;
+    transition:
+        background-color 0.3s,
+        color 0.3s;
 }
 
 button {

@@ -4,16 +4,16 @@
     border: 2px solid #ccc;
     gap: 1rem;
     padding: 1rem;
-    transition: all .3s;
-}
+    transition: all 0.3s;
 
-.todo-card.completed {
-    border-color: #00853E;
-    background-color: rgba(0, 133, 62, .35);
-}
+    &.completed {
+        border-color: #00853e;
+        background-color: rgba(0, 133, 62, 0.35);
+    }
 
-.todo-card p {
-    margin: 0;
+    p {
+        margin: 0;
+    }
 }
 
 .todo-card__controls {
@@ -27,6 +27,6 @@
 }
 
 .toggle {
-    background-color: #00853E;
+    background-color: #00853e;
     color: #fff;
 }

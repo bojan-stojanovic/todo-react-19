@@ -7,7 +7,7 @@ import TodoList from "./components/TodoList";
 type Todo = {
   message: string;
   completed: boolean;
-}
+};
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -33,7 +33,7 @@ function App() {
   function onAddTodo(todoMessage: string) {
     const todo = {
       message: todoMessage,
-      completed: false
+      completed: false,
     };
 
     setTodos([todo, ...todos]);
@@ -47,10 +47,17 @@ function App() {
 
   function onTodoUpdate(index: number) {
     // update completed status of correct todo
-    const completed = filteredTodos[index].completed = !filteredTodos[index].completed;
+    const completed = (filteredTodos[index].completed =
+      !filteredTodos[index].completed);
 
-    setFilteredTodos(filteredTodos.map((todo, i) => i === index ? { ...todo, completed } : todo));
-    setTodos(todos.map((todo, i) => i === index ? { ...todo, completed } : todo));
+    setFilteredTodos(
+      filteredTodos.map((todo, i) =>
+        i === index ? { ...todo, completed } : todo,
+      ),
+    );
+    setTodos(
+      todos.map((todo, i) => (i === index ? { ...todo, completed } : todo)),
+    );
   }
 
   function onFilterTodos(filter: string) {
@@ -59,8 +66,10 @@ function App() {
     setActiveFilter(filter);
 
     if (filter === "all") setFilteredTodos(todos.filter(() => [...todos]));
-    if (filter === "done") setFilteredTodos(todos.filter(todo => todo.completed === true));
-    if (filter === "open") setFilteredTodos(todos.filter(todo => todo.completed === false));
+    if (filter === "done")
+      setFilteredTodos(todos.filter((todo) => todo.completed === true));
+    if (filter === "open")
+      setFilteredTodos(todos.filter((todo) => todo.completed === false));
   }
 
   return (
@@ -68,16 +77,24 @@ function App() {
       <h1>Todo app</h1>
       <TodoInput addTodo={onAddTodo} />
 
-      {todos.length > 0 &&
+      {todos.length > 0 && (
         <>
-          <TodoFilter todoNumber={filteredTodos.length} activeFilter={activeFilter} updateActiveFilter={onFilterTodos} />
-          <TodoList filteredTodos={filteredTodos} onRemoveTodo={onRemoveTodo} onTodoUpdate={onTodoUpdate} />
+          <TodoFilter
+            todoNumber={filteredTodos.length}
+            activeFilter={activeFilter}
+            updateActiveFilter={onFilterTodos}
+          />
+          <TodoList
+            filteredTodos={filteredTodos}
+            onRemoveTodo={onRemoveTodo}
+            onTodoUpdate={onTodoUpdate}
+          />
         </>
-      }
+      )}
 
       {todos.length === 0 && <p>You don't have any todos yet....</p>}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
