@@ -53,18 +53,14 @@ function App() {
     setTodos(todos.map((todo, i) => i === index ? { ...todo, completed } : todo));
   }
 
-  function onFilterTodos(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    const _activeFilter = e.currentTarget.dataset.filter!;
+  function onFilterTodos(filter: string) {
+    if (filter === activeFilter) return;
 
-    if (_activeFilter === activeFilter) return;
+    setActiveFilter(filter);
 
-    setActiveFilter(_activeFilter);
-
-    if (_activeFilter === "all") setFilteredTodos(todos.filter(() => [...todos]));
-
-    if (_activeFilter === "done") setFilteredTodos(todos.filter(todo => todo.completed === true));
-
-    if (_activeFilter === "open") setFilteredTodos(todos.filter(todo => todo.completed === false));
+    if (filter === "all") setFilteredTodos(todos.filter(() => [...todos]));
+    if (filter === "done") setFilteredTodos(todos.filter(todo => todo.completed === true));
+    if (filter === "open") setFilteredTodos(todos.filter(todo => todo.completed === false));
   }
 
   return (
@@ -78,6 +74,8 @@ function App() {
           <TodoList filteredTodos={filteredTodos} onRemoveTodo={onRemoveTodo} onTodoUpdate={onTodoUpdate} />
         </>
       }
+
+      {todos.length === 0 && <p>You don't have any todos yet....</p>}
     </div>
   )
 }
