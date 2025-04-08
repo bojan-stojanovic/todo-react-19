@@ -1,6 +1,6 @@
 import TodoInput from "./components/TodoInput";
 import styles from "./App.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import TodoFilter from "./components/TodoFilter";
 import TodoList from "./components/TodoList";
 
@@ -11,8 +11,19 @@ type Todo = {
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
   const [activeFilter, setActiveFilter] = useState("all");
+
+  const filteredTodos = useMemo(() => {
+    if (activeFilter === "done") {
+      return todos.filter((todo) => todo.completed === true);
+    }
+
+    if (activeFilter === "open") {
+      return todos.filter((todo) => todo.completed === false);
+    }
+
+    return todos;
+  }, [todos, activeFilter]);
 
   async function fetchTodos() {
     try {
@@ -20,7 +31,6 @@ function App() {
       const data = await response.json();
 
       setTodos([...data]);
-      setFilteredTodos([...data]);
     } catch (e) {
       console.error(e);
     }
@@ -37,24 +47,15 @@ function App() {
     };
 
     setTodos([todo, ...todos]);
-    setFilteredTodos([todo, ...filteredTodos]);
   }
 
   function onRemoveTodo(index: number) {
-    setFilteredTodos(filteredTodos.filter((_, i) => i !== index));
     setTodos(todos.filter((_, i) => i !== index));
   }
 
   function onTodoUpdate(index: number) {
     // update completed status of correct todo
-    const completed = (filteredTodos[index].completed =
-      !filteredTodos[index].completed);
-
-    setFilteredTodos(
-      filteredTodos.map((todo, i) =>
-        i === index ? { ...todo, completed } : todo,
-      ),
-    );
+    const completed = (todos[index].completed = !todos[index].completed);
     setTodos(
       todos.map((todo, i) => (i === index ? { ...todo, completed } : todo)),
     );
@@ -62,14 +63,7 @@ function App() {
 
   function onFilterTodos(filter: string) {
     if (filter === activeFilter) return;
-
     setActiveFilter(filter);
-
-    if (filter === "all") setFilteredTodos(todos.filter(() => [...todos]));
-    if (filter === "done")
-      setFilteredTodos(todos.filter((todo) => todo.completed === true));
-    if (filter === "open")
-      setFilteredTodos(todos.filter((todo) => todo.completed === false));
   }
 
   return (
