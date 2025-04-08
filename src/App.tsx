@@ -14,14 +14,10 @@ function App() {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const filteredTodos = useMemo(() => {
-    if (activeFilter === "done") {
+    if (activeFilter === "done")
       return todos.filter((todo) => todo.completed === true);
-    }
-
-    if (activeFilter === "open") {
+    if (activeFilter === "open")
       return todos.filter((todo) => todo.completed === false);
-    }
-
     return todos;
   }, [todos, activeFilter]);
 
