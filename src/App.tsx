@@ -5,6 +5,7 @@ import TodoFilter from "./components/TodoFilter";
 import TodoList from "./components/TodoList";
 
 type Todo = {
+  id: string;
   message: string;
   completed: boolean;
 };
@@ -38,6 +39,7 @@ function App() {
 
   function onAddTodo(todoMessage: string) {
     const todo = {
+      id: crypto.randomUUID(),
       message: todoMessage,
       completed: false,
     };
@@ -45,16 +47,16 @@ function App() {
     setTodos([todo, ...todos]);
   }
 
-  function onRemoveTodo(index: number) {
-    setTodos(todos.filter((_, i) => i !== index));
+  function onRemoveTodo(id: string) {
+    setTodos(todos.filter((todo, i) => todo.id !== id));
   }
 
-  function onTodoUpdate(index: number) {
-    // update completed status of correct todo
-    const completed = (todos[index].completed = !todos[index].completed);
-    setTodos(
-      todos.map((todo, i) => (i === index ? { ...todo, completed } : todo)),
+  function onTodoUpdate(id: string) {
+    const updatedTodos = todos.map((todo, i) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
     );
+
+    setTodos(updatedTodos);
   }
 
   function onFilterTodos(filter: string) {

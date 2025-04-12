@@ -1,13 +1,16 @@
 [
     {
+        "id": "1",
         "message": "Todo from json 1",
         "completed": false
     },
     {
+        "id": "2",
         "message": "Todo from json 2",
         "completed": true
     },
     {
+        "id": "3",
         "message": "Todo from json 3",
         "completed": false
     }

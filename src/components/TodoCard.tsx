@@ -1,17 +1,17 @@
 import styles from "./TodoCard.module.css";
 
 type Props = {
+  id: string;
   message: string;
   completed: boolean;
-  index: number;
-  removeTodo: (index: number) => void;
-  todoStatus: (index: number) => void;
+  removeTodo: (id: string) => void;
+  todoStatus: (id: string) => void;
 };
 
 export default function TodoCard({
+  id,
   message,
   completed,
-  index,
   todoStatus,
   removeTodo,
 }: Props) {
@@ -22,10 +22,10 @@ export default function TodoCard({
       >
         <p>{message}</p>
         <div className={styles["todo-card__controls"]}>
-          <button className={styles.toggle} onClick={() => todoStatus(index)}>
+          <button className={styles.toggle} onClick={() => todoStatus(id)}>
             Mark as done
           </button>
-          <button className={styles.remove} onClick={() => removeTodo(index)}>
+          <button className={styles.remove} onClick={() => removeTodo(id)}>
             Remove
           </button>
         </div>

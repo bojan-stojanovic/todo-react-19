@@ -3,9 +3,9 @@ import TodoCard from "./TodoCard";
 import styles from "./TodoList.module.css";
 
 type Props = {
-  filteredTodos: { message: string; completed: boolean }[];
-  onTodoUpdate: (index: number) => void;
-  onRemoveTodo: (index: number) => void;
+  filteredTodos: { id: string, message: string; completed: boolean }[];
+  onTodoUpdate: (id: string) => void;
+  onRemoveTodo: (id: string) => void;
 };
 
 export default function TodoList({
@@ -15,14 +15,14 @@ export default function TodoList({
 }: Props) {
   return (
     <div className={styles["todo-list"]}>
-      {filteredTodos.map((todo, index) => (
+      {filteredTodos.map((todo) => (
         <TodoCard
+          id={todo.id}
           message={todo.message}
           completed={todo.completed}
-          index={index}
           todoStatus={onTodoUpdate}
           removeTodo={onRemoveTodo}
-          key={index}
+          key={todo.id}
         />
       ))}
     </div>
